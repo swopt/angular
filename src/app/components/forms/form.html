@@ -1,0 +1,5 @@
+<h2 class="title">{{formModel.title}}</h2>
+<table>
+    <tr *ngFor="let item of listing"><td *ngFor="let entry of item | keys">{{entry.key}}:{{entry.value}};</td></tr>
+</table>
+<dynform *ngIf="formModel.fields" [fields]="formModel.fields" [values]="formModel.values" [meta]="formModel" (newItem)="addItem($event)"></dynform>

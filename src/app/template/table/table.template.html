@@ -1,0 +1,8 @@
+<div>
+    <table *ngIf="table!=undefined" id="fisTable" matSort (matSortChange)="sortData($event)">
+        <tbody>
+            <tr><th *ngFor="let column of table.columns" mat-sort-header="{{column.colId}}">{{column.colName}}</th></tr>
+            <tr *ngFor="let row of sortedData"><td [ngStyle]="tdStyle(row[column.colId])" *ngFor="let column of table.columns">{{setDecimal(row[column.colId],2)}}</td></tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,18 @@
+<button mat-icon-button [matMenuTriggerFor]="file">File</button>
+<mat-menu #file="matMenu">
+    <button mat-menu-item [routerLink]="['/form1']">base</button>
+    <button mat-menu-item><mat-icon>save</mat-icon>Save</button>
+    <button mat-menu-item><mat-icon>save</mat-icon>Save As&#8230;</button>
+</mat-menu>
+
+<button mat-icon-button [matMenuTriggerFor]="edit">Edit</button>
+<mat-menu #edit="matMenu">
+    <button mat-menu-item><mat-icon>undo</mat-icon>Undo</button>
+    <button mat-menu-item><mat-icon>redo</mat-icon>Redo</button>
+</mat-menu>
+
+<button mat-icon-button [matMenuTriggerFor]="help">Help</button>
+<mat-menu #help="matMenu">
+    <button mat-menu-item>Welcome</button>
+    <button mat-menu-item><mat-icon>info</mat-icon>About</button>
+</mat-menu>

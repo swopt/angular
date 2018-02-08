@@ -1,0 +1,29 @@
+<div [formGroup]="form">
+    <!--<label [attr.for]="field.key">{{field.label}}</label>-->
+  
+    <div [ngSwitch]="field.controlType">
+      <mat-input-container *ngSwitchCase="'textbox'">
+        <input matInput [formControlName]="field.key" onclick="this.select()"
+        [id]="field.key" [type]="field.type" [ngStyle]="dfStyle(value)" step="{{field.step}}" placeholder="{{field.label}}" value="{{setDecimal(value,2)}}"/>
+        <mat-error *ngIf="!isValid">{{field.label}} is required</mat-error>
+      </mat-input-container>
+      <mat-input-container *ngSwitchCase="'textboxauto'">
+          <input matInput [formControlName]="field.key" [matAutocomplete]="auto" onclick="this.select()"
+          [id]="field.key" [type]="field.type" placeholder="{{field.label}}" value="{{value}}"/>
+          <mat-error *ngIf="!isValid">{{field.label}} is required</mat-error>
+        </mat-input-container>
+      <mat-autocomplete *ngSwitchCase="'textboxauto'" #auto="matAutocomplete" mat-selected-item="value">
+          <mat-option *ngFor="let option of options" [value]="option">
+              {{ option }}
+           </mat-option>
+      </mat-autocomplete>
+      <mat-input-container *ngSwitchCase="'textarea'">
+        <textarea matInput [formControlName]="field.key"
+        [id]="field.key" [type]="field.type" placeholder="{{field.label}}" value="{{value}}"></textarea>
+        <mat-error *ngIf="!isValid">{{field.label}} is required</mat-error>
+      </mat-input-container>
+      <mat-select [id]="field.key" *ngSwitchCase="'dropdown'" [formControlName]="field.key" placeholder="{{field.label}}">
+        <mat-option *ngFor="let opt of field.options" [value]="opt.key">{{opt.value}}</mat-option>
+      </mat-select>
+    </div>
+  </div>

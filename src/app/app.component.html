@@ -1,0 +1,21 @@
+<mat-toolbar class="mat-elevation-z5" color="primary">
+   <button mat-icon-button (click)="sidenav.toggle()">
+        FIS
+    </button>
+    <appmenu></appmenu>
+    <button mat-icon-button (click)="openCodeDialog()">
+        <mat-icon>code</mat-icon>
+    </button>
+</mat-toolbar>
+<mat-sidenav-container>
+    <mat-sidenav #sidenav mode="side">
+        <div class="left-pane">
+            <prgtree [sidenav]="sidenav"></prgtree>
+        </div>
+    </mat-sidenav>
+    
+    
+    <div class="ctrPane" (click)="sidenav.close()">
+        <router-outlet></router-outlet> 
+    </div>
+</mat-sidenav-container>

@@ -1,0 +1,14 @@
+<div>
+    <div id="header" style="block;vertical-align:top" *ngFor="let headcol of template.headColumns" >
+        <dynamic-field *ngIf="headcol.headFields" [fields]="headcol.headFields" [values]="values"></dynamic-field>
+    </div>
+    <button mat-button (click)="submit()">Submit</button>
+    <div id="content">
+        <mat-tab-group>
+            <mat-tab label="Group by Currency"><fistable mat-tab-content [url]="'http://fis:3333/json/dummytable1'"></fistable></mat-tab>
+            <mat-tab label="Open Item"><fistable mat-tab-content [url]="'http://fis:3333/json/dummytable2'"></fistable></mat-tab>
+            <mat-tab label="Bal. B. Fwd."></mat-tab>
+        </mat-tab-group>
+
+    </div>
+</div>

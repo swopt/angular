@@ -1,0 +1,36 @@
+<div mat-dialog-content>
+    <mat-tab-group>
+        <mat-tab label="HTML">
+            <pre>
+                <code class="html hightlight-this">
+                    <section [innerHTML]="htmlContent" highlight-js-content=".highlight"></section>
+                </code>
+            </pre>
+        </mat-tab>
+        <mat-tab label="TS">
+                <pre>
+                    <code class="typescript hightlight-this">
+                        <section [innerHTML]="tsContent" highlight-js-content=".highlight"></section>
+                    </code>
+                </pre>
+        </mat-tab>
+        <mat-tab label="Metadata Service &amp; JSON">
+            <pre>
+                <code class="typescript hightlight-this">
+                    <section [innerHTML]="metaService" highlight-js-content=".highlight"></section>
+                </code>
+            </pre>
+        </mat-tab>
+        <mat-tab label="Data Service &amp; JSON">
+            <pre>
+                <code class="typescript hightlight-this">
+                    <section [innerHTML]="dataService" highlight-js-content=".highlight"></section>
+                </code>
+            </pre>
+        </mat-tab>
+    </mat-tab-group>
+
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onClose()" tabindex="-1">Close</button>
+</div>

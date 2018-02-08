@@ -1,0 +1,23 @@
+<div class="container">
+    <ul class="level0">
+        <li><a [routerLink]="['/form1']">Sample 1</a></li>
+        <li><a [routerLink]="['/form2']">Sample 2</a></li>
+        <li *ngFor="let prgTree of prgTrees">
+            {{prgTree.moduleName}}
+            <ul>
+                <li *ngFor="let sub of prgTree.submodules">
+                    {{sub.moduleName}}
+                    <ul>
+                        <li *ngFor="let prg of sub.prgs">
+                            <a (click)="sidenav.toggle()" *ngIf="prg.prg_display=='Y'&&prg.prg_type=='E'" [routerLink]="['/enquiry']" [queryParams]="{id:prg.prg_id,prgName:prg.subs_code+' - '+prg.prg_name}">{{prg.prg_name}}</a>
+                            <a (click)="sidenav.toggle()" *ngIf="prg.prg_display=='Y'&&prg.prg_type=='M'" [routerLink]="['/maintenance']" [queryParams]="{id:prg.prg_id,prgName:prg.subs_code+' - '+prg.prg_name}">{{prg.prg_name}}</a>
+                            <a (click)="sidenav.toggle()" *ngIf="prg.prg_display=='Y'&&prg.prg_type=='R'" [routerLink]="['/report']" [queryParams]="{id:prg.prg_id,prgName:prg.subs_code+' - '+prg.prg_name}">{{prg.prg_name}}</a>
+                            <a (click)="sidenav.toggle()" *ngIf="prg.prg_display=='Y'&&prg.prg_type=='S'" [routerLink]="['/security']" [queryParams]="{id:prg.prg_id,prgName:prg.subs_code+' - '+prg.prg_name}">{{prg.prg_name}}</a>
+                            <a (click)="sidenav.toggle()" *ngIf="prg.prg_display=='Y'&&prg.prg_type=='T'" [routerLink]="['/transaction']" [queryParams]="{id:prg.prg_id,prgName:prg.subs_code+' - '+prg.prg_name}">{{prg.prg_name}}</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>

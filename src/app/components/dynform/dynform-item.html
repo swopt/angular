@@ -1,0 +1,36 @@
+<div [formGroup]="formGroup">
+    <!--<label [attr.for]="field.key">{{field.label}}</label>-->
+  
+    <div [ngSwitch]="true">
+      <mat-input-container *ngSwitchCase="field.type === 'string' || field.type === 'number' || field.type === 'date'">
+        <input matInput [formControlName]="field.key"
+          [id]="field.key" [type]="field.type" 
+          [ngStyle]="dfStyle(value)" placeholder="{{field.label}}" 
+          value="{{value}}" step="any"/>
+        <mat-error *ngIf="!isValid">{{field.label}} is required</mat-error>
+      </mat-input-container>
+      <!--<mat-form-field *ngSwitchCase="'string-auto'">
+        <input matInput [id]="field.key" [type]="field.type" value="{{value}}" placeholder="{{field.label}}"  [formControl]="formControl"
+          [formControlName]="field.key" [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="this.optionSelected()">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option.value">
+                {{option.value}}
+             </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>-->
+      <!--<mat-input-container *ngSwitchCase="'textboxauto'">
+          [id]="field.key" [type]="field.type" placeholder="{{field.label}}" value="{{value}}"/>
+          <mat-error *ngIf="!isValid">{{field.label}} is required</mat-error>
+        </mat-input-container>-->
+      <mat-input-container *ngSwitchCase="field.type === 'string_multiline'">
+        <textarea matInput [formControlName]="field.key"
+        [id]="field.key" [type]="field.type" placeholder="{{field.label}}" value="{{value}}"></textarea>
+        <mat-error *ngIf="!isValid">{{field.label}} is required</mat-error>
+      </mat-input-container>
+      <mat-form-field *ngSwitchCase="field.type === 'reference_value'" >
+        <mat-select [id]="field.key" [formControlName]="field.key" placeholder="{{field.label}}" [(ngModel)]="selectedOption" (ngModelChange)="this.optionSelected()">
+          <mat-option *ngFor="let opt of filteredOptions | async" [value]="opt.value">{{opt.value}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>

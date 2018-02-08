@@ -1,0 +1,38 @@
+/*
+h1 {
+  color: #369;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 200%;
+}
+
+
+.full-title{
+  margin-left: 30px;
+  color: #5399e0;
+}*/
+body {
+  margin : 0px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.lft-pane {
+  display:table-cell;
+  height:100vh;width:150px;
+  padding:5px;
+  border-right: 1px solid #8e8e8e;
+}
+
+.ctr-pane {
+  display:table-cell;
+  height:100vh;width:100vw;
+  padding: none;
+  overflow-x: scroll;
+}
+
+
+.center-div
+{
+  top:50%;
+  left: 50%;
+  transform: translate3d(-50%,-50%, 0);
+}

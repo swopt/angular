@@ -1,0 +1,6 @@
+<div>
+    <div id="header" style="display:inline-block;vertical-align:top" *ngFor="let headcol of template.headColumns" >
+        <dynamic-field *ngIf="headcol.headFields" [fields]="headcol.headFields" [values]="values"></dynamic-field>
+    </div>
+    <div id="content" [innerHtml]="contentHtml"></div>
+</div>
