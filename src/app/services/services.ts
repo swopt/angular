@@ -35,6 +35,8 @@ export class WebAppService{
                 res => {
                   authKey = res.json().data;
                   localStorage.setItem("auth-key",authKey+'');
+                  observer.next(authKey);
+                  observer.complete();
                 },
                 error => {
                     observer.error(error.json());
@@ -45,6 +47,11 @@ export class WebAppService{
             observer.next(authKey);
             observer.complete();
         });
+    }
+
+    resetAuthKey() {
+        localStorage.removeItem("auth-key");
+        this.getAuthKey(this.userdat).subscribe();
     }
 
     callApiGet(url: string,headers?: Headers, search?: URLSearchParams): Observable<any> {
@@ -64,6 +71,9 @@ export class WebAppService{
                             observer.complete();
                         },
                         error => {
+                            if (error.json().errors.exception === "jwt expired"){
+                                this.resetAuthKey();
+                            }
                             observer.error(error.json());
                             observer.complete();
                         }
@@ -90,6 +100,9 @@ export class WebAppService{
                             observer.complete();
                         },
                         error => {
+                            if (error.json().errors.exception === "jwt expired"){
+                                this.resetAuthKey();
+                            }
                             observer.error(error.json());
                             observer.complete();
                         },
