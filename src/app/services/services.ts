@@ -74,8 +74,7 @@ export class WebAppService{
                             if (error.json().errors.exception === "jwt expired"){
                                 this.resetAuthKey();
                             }
-                            observer.error(error.json());
-                            observer.complete();
+                            observer.error(error);
                         }
                     )
                 }
@@ -87,6 +86,7 @@ export class WebAppService{
         return new Observable(observer => {
             this.getAuthKey(this.userdat).subscribe(
                 value => {
+                    console.log(value);
                     let hdrs: Headers = new Headers({
                         'Content-Type': 'application/json',
                         'Authorization': 'Bearer '+value

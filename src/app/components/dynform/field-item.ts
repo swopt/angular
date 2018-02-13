@@ -4,6 +4,7 @@ export class FieldItem<T>{
     label: string;
     required: boolean;
     type: string;
+    error: string;
     reference_values: {key: string, value: string}[] = [];
     selectedRef: any;
   

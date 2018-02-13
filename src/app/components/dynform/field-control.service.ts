@@ -30,10 +30,7 @@ export class FieldControlService {
     Object.keys(payload).forEach(key => {
       search.append(key,payload[key]);
     });
-    let header = new Headers({
-      'Content-Type': 'application/x-www-form-urlencoded'
-    });
-    return this.service.callApiPost(postUrl,header,null,search);
+    return this.service.callApiGet(postUrl,null,search);
   }
 
   optionSelected(postUrl, field, fg: FormGroup, global: Global){

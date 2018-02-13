@@ -5,7 +5,7 @@ import { FieldItem }              from './field-item';
 import { FieldControlService }    from './field-control.service';
 import { DataModel } from 'app/components/data.model';
 import { Global } from 'app/components/global';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatDialogConfig } from '@angular/material';
 import { DialogComponent } from 'app/components/dialog/dialog.component';
 
 @Component({
@@ -36,6 +36,7 @@ export class DynformComponent implements OnInit {
     this.postUrl = this.global.getCompleteUrl(this.meta.endpoints.insert.url);
   }
   
+  /* form submit action*/
   onSubmit() {
     this.payLoad = this.formGroup.value;
     let result = this.fcs.submit(this.postUrl,this.payLoad);
@@ -47,9 +48,15 @@ export class DynformComponent implements OnInit {
         }
       },
       error => {
-        if (error.exception) this.openMsgDialog(error.exception);
-        else if (error.invalid) {
-
+        let err = error.json();
+        console.log(err);
+        if (err.errors.exception) this.openMsgDialog({data:{msg:err.errors.exception}});
+        else if (err.errors.invalid) {
+          Object.keys(err.errors.invalid).forEach(key => {
+            this.formGroup.get(key).setErrors(err.errors.invalid[key]);
+            let field = this.fields.find(i => i.key === key);
+            field.error = err.errors.invalid[key][0];
+          });
         }
       }
     )
@@ -66,8 +73,9 @@ export class DynformComponent implements OnInit {
     
   }
 
-  openMsgDialog(message: string) {
-    this.dialog.open(DialogComponent,{data:{msg:message},width:"350px",height:"100px"});
+  /* opens message dialog when called*/
+  openMsgDialog(config: MatDialogConfig) {
+    this.dialog.open(DialogComponent,config);
   }
 
 }

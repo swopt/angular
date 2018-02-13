@@ -11,7 +11,7 @@
                 [id]="field.key" [type]="field.type" 
                 [ngStyle]="dfStyle(formGroup.value[field.key])" placeholder="{{field.label}}" 
                 value="{{formGroup.value[field.key]}}" step="any"/>
-              <mat-error *ngIf="!isValid">{{field.errMsg}}</mat-error>
+              <mat-error *ngIf="!isValid">{{field.error}}</mat-error>
             </mat-input-container>
             <!--<mat-form-field *ngSwitchCase="'string-auto'">
               <input matInput [id]="field.key" [type]="field.type" value="{{value}}" placeholder="{{field.label}}"  [formControl]="formControl"
@@ -29,12 +29,13 @@
             <mat-input-container *ngSwitchCase="field.type === 'string_multiline'">
               <textarea matInput [formControlName]="field.key"
               [id]="field.key" [type]="field.type" placeholder="{{field.label}}" value="{{formGroup.value[field.key]}}"></textarea>
-              <mat-error *ngIf="!isValid">{{field.errMsg}}</mat-error>
+              <mat-error *ngIf="!isValid">{{field.error}}</mat-error>
             </mat-input-container>
             <mat-form-field *ngSwitchCase="field.type === 'reference_value'" >
               <mat-select [id]="field.key" [formControlName]="field.key" placeholder="{{field.label}}" [(ngModel)]="field.selectedRef" (ngModelChange)="modelChangeAction()">
                 <mat-option *ngFor="let opt of field.reference_values" [value]="opt.value">{{opt.value}}</mat-option>
               </mat-select>
+              <mat-error *ngIf="!isValid">{{field.error}}</mat-error>
             </mat-form-field>
           </div>
         </div>

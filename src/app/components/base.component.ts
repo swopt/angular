@@ -23,8 +23,9 @@ export class BaseComponent {
     ngOnInit(): void {
         this.metaSubscription = this.service.getMetadata(this.metaUrl)
         .subscribe(value => {this.metaObj = value.data; this.extendedMetaActions()});
-        this.dataSubscription = this.service.getData(this.dataUrl)
+        /*this.dataSubscription = this.service.getData(this.dataUrl)
         .subscribe(value => {this.dataModel = new DataModel(value); this.extendedDataActions()});
+        */
     }
 
     ngOnDestroy() {

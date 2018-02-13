@@ -87,6 +87,9 @@ export class FormModel {
 
     constructor (private metaObj:any, private dataObj:any, private frmBld:FormBuilder){
         this.title = metaObj.title;
+        if(metaObj.fields) metaObj.fields.forEach(field => {
+            field.error = field.label + ' is required.';
+        });
         this.fields = metaObj.fields;
         this.endpoints = metaObj.endpoints;
     }
