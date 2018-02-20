@@ -2,13 +2,14 @@ import {Injectable} from '@angular/core';
 import {Http,Headers,URLSearchParams} from '@angular/http';
 import {Observable} from 'rxjs/Rx';
 import { Global } from 'app/components/global';
+import { Router } from '@angular/router';
 
 
 @Injectable()
 export class WebAppService{
     userdat= {user: 'abc', pass: '123'};
 
-    constructor (private http:Http, private global:Global){}
+    constructor (private http:Http, private global:Global, private router:Router){}
 
     getData<T>(url:string): Observable<T> {
         return new Observable(observer => {
@@ -51,7 +52,7 @@ export class WebAppService{
 
     resetAuthKey() {
         localStorage.removeItem("auth-key");
-        this.getAuthKey(this.userdat).subscribe();
+        this.getAuthKey(this.userdat).subscribe(value => this.router.navigate(['']));
     }
 
     callApiGet(url: string,headers?: Headers, search?: URLSearchParams): Observable<any> {
