@@ -57,6 +57,7 @@ export class WebAppService{
         this.getAuthKey(this.userdat).subscribe(value => this.router.navigate(['']));
     }
 
+    /* GET data from backend*/
     callApiGet(url: string,headers?: Headers, search?: URLSearchParams): Observable<any> {
         return new Observable(observer => {
             this.getAuthKey(this.userdat).subscribe(
