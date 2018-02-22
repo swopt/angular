@@ -25,6 +25,7 @@ export class WebAppService{
         })
     }
 
+    /* GET JWT Authentication Token from server and stores it in localStorage */
     getAuthKey(userdat: {user:string, pass:string}): Observable<string> {
         return new Observable(observer => {
             let authKey = localStorage.getItem("auth-key");
@@ -50,6 +51,7 @@ export class WebAppService{
         });
     }
 
+    /* Called when Authentication Token expires, removes expired Auth token and retrieves new Auth Token*/
     resetAuthKey() {
         localStorage.removeItem("auth-key");
         this.getAuthKey(this.userdat).subscribe(value => this.router.navigate(['']));
@@ -83,6 +85,7 @@ export class WebAppService{
         });
     }
     
+    /* POST data to backend*/
     callApiPost(url: string, headers?: Headers, body?: any, search?: URLSearchParams): Observable<any> {
         return new Observable(observer => {
             this.getAuthKey(this.userdat).subscribe(
